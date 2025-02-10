@@ -11,7 +11,10 @@ final Dio dio = Dio();
 
 Future<void> setupLocator() async {
   setUpDio();
-  getIt.registerSingleton(TopNewsRepository(dio: getIt<Dio>()));
-  getIt.registerSingleton(HomeBloc(getIt.get<TopNewsRepository>()));
+
   getIt.registerSingleton(talker);
+  getIt.registerSingleton(dio);
+
+  getIt.registerSingleton(TopNewsRepository(dio: dio));
+  getIt.registerSingleton(HomeBloc(getIt.get<TopNewsRepository>()));
 }

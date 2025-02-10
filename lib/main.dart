@@ -4,7 +4,7 @@ import 'package:flutter_application_1/flutter_application_1.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupLocator();
+  await setupLocator();
   
   FlutterError.onError = (details) => talker.handle(
     details.exception,

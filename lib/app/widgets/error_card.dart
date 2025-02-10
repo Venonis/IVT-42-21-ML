@@ -4,17 +4,23 @@
 part of 'widgets.dart';
 
 class ErrorCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final VoidCallback onReload;
+
   const ErrorCard({
-    super.key, required title, description, onReload,
+    super.key, 
+    required this.title,
+    required this.description,
+    required this.onReload,
   });
   
   @override
   Widget build(BuildContext context) {
       return InkWell(
-        // onTap: () {
-        //   // для следующей лабораторной работы
-        //   context.go('/home/article/1');
-        // },
+        onTap: () {
+          onReload;
+        },
 
         borderRadius: BorderRadius.circular(5),
 
@@ -29,17 +35,14 @@ class ErrorCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  50.ph,
                   Text(
-                    '$this.title',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                    title,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                    5.ph,
+                    10.ph,
                   Text(
-                    'Tap to enter second page',
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
+                    description,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],

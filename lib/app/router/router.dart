@@ -27,9 +27,10 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'article/:id',
           pageBuilder: (context, state) {
+            final id = int.parse(state.pathParameters['id']!);
             return NoTransitionPage<void>(
               key: state.pageKey,
-              child: const DetailsScreen(),
+              child: DetailsScreen(id:id),
             );
           },
         ),

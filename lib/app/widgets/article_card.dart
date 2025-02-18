@@ -5,15 +5,18 @@ part of 'widgets.dart';
 
 class ArticleCard extends StatelessWidget {
   const ArticleCard({
-    super.key, required article,
+    super.key, required this.article, required this.id,
   });
+
+  final int id;
+  final Article article;
   
   @override
   Widget build(BuildContext context) {
       return InkWell(
         onTap: () {
           // для следующей лабораторной работы
-          context.go('/home/article/1');
+          context.go('/home/article/$id');
         },
 
         borderRadius: BorderRadius.circular(5),
@@ -27,6 +30,7 @@ class ArticleCard extends StatelessWidget {
             width: 100,
             height: 100,
             'assets/images/test_image.jpg',
+            //article.imageUrl,
             fit: BoxFit.cover,
             ),
             ),
@@ -36,14 +40,14 @@ class ArticleCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Article 1',
+                    article.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                     5.ph,
                   Text(
-                    'Tap to enter second page',
+                    article.description,
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyLarge,

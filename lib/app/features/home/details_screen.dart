@@ -4,15 +4,19 @@ import 'package:flutter_application_1/app/app.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/di/di.dart';
 import 'package:flutter_application_1/domain/domain.dart';
+import 'package:go_router/go_router.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
+class DetailsScreen extends StatefulWidget {
+  DetailsScreen({
+    super.key, required this.id,
+  });
+  final int id;
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _DetailsScreenState extends State<DetailsScreen> {
+
   final _homeBloc = HomeBloc(getIt<TopNewsRepository>());
 
   @override
@@ -20,13 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
     _homeBloc.add(const HomeLoad());
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Главная',
+            'Детали',
           ),
         ),
         body: BlocBuilder<HomeBloc, HomeState>(
@@ -38,31 +43,22 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             }
             if (state is HomeLoadSuccess) {
-              List<Article> articles = state.articles;
+              GoRouterState.of(context);
+              Article article = state.articles[widget.id];
               return SingleChildScrollView(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Топ Новостей',
+                      article.title,
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     20.ph,
-                    ListView.separated(
-                      primary: false,
-                      shrinkWrap: true,
-                      itemCount: articles.length,
-                      itemBuilder: (context, index) {
-                        return ArticleCard(
-                          article: articles[index],
-                          id: index,
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return 20.ph;
-                      },
-                    ),
+                    Text(
+                      article.description,
+                      //style: Theme.of(context).textTheme.bodyMedium,
+                    )
                   ],
                 ),
               );

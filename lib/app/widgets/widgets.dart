@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/di/di.dart';
+import 'package:flutter_application_1/domain/domain.dart';
 import 'package:flutter_application_1/flutter_application_1.dart';
 // export 'article_card.dart';
 // export 'error_card.dart';

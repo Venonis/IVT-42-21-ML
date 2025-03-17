@@ -17,4 +17,6 @@ Future<void> setupLocator() async {
 
   getIt.registerSingleton(TopNewsRepository(dio: dio));
   getIt.registerSingleton(HomeBloc(getIt.get<TopNewsRepository>()));
+  
+  getIt.registerSingleton(AuthService());
 }

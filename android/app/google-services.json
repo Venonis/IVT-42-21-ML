@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "927798109191",
+    "project_id": "newsbrief-eaba9",
+    "storage_bucket": "newsbrief-eaba9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:927798109191:android:aa1be4dd137143b83a36a2",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCh2Lh3QFSm5sYclXjxkBsw6sFvf0DNimk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

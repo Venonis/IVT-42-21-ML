@@ -37,10 +37,10 @@ packages:
     dependency: transitive
     description:
       name: args
-      sha256: bf9f5caeea8d8fe6721a9c358dd8a5c1947b27f1cfaa18b39c301273594919e6
+      sha256: d0481093c50b1da8910eb0bb301626d4d8eb7284aa739614d2b394ee09e3ea04
       url: "https://pub.dev"
     source: hosted
-    version: "2.6.0"
+    version: "2.7.0"
   async:
     dependency: transitive
     description:
@@ -556,10 +556,10 @@ packages:
     dependency: transitive
     description:
       name: package_config
-      sha256: "92d4488434b520a62570293fbd33bb556c7d49230791c1b4bbd973baf6d2dc67"
+      sha256: f096c55ebb7deb7e384101542bfba8c52696c1b56fca2eb62827989ef2353bbc
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.1"
+    version: "2.2.0"
   path:
     dependency: transitive
     description:
@@ -769,34 +769,34 @@ packages:
     dependency: "direct main"
     description:
       name: talker
-      sha256: "5ab7d974ad92042b3e2382441c41ec4c6e5b3fa2b4b024d8ccbfc4bc2244b7bb"
+      sha256: "45abef5b92f9b9bd42c3f20133ad4b20ab12e1da2aa206fc0a40ea874bed7c5d"
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.14"
+    version: "4.7.1"
   talker_dio_logger:
     dependency: "direct main"
     description:
       name: talker_dio_logger
-      sha256: "71780c52951d36e94964ca06158d827dfc67aa2fb75c8b880603cfefa4377b39"
+      sha256: "52c1b554cccedec6073637a6d4f6a3e267dd4451c1545fe57e1b26897a560ccb"
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.14"
+    version: "4.7.1"
   talker_flutter:
     dependency: "direct main"
     description:
       name: talker_flutter
-      sha256: "0cc816260b226c0ff930909c9f22984316b652b140f5eabb97ae9813ee0de135"
+      sha256: "77458ca11638dfefb651e898a26101ee54e60dc0b168ad7481a05b1c97ce2680"
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.14"
+    version: "4.7.1"
   talker_logger:
     dependency: transitive
     description:
       name: talker_logger
-      sha256: "16ff0cfdf011f65b37957c9ff7ef7043dd9f1c8af3ccb4a44ac4a448defb9eb5"
+      sha256: ed9b20b8c09efff9f6b7c63fc6630ee2f84aa92661ae09e5ba04e77272bf2ad2
       url: "https://pub.dev"
     source: hosted
-    version: "4.6.14"
+    version: "4.7.1"
   term_glyph:
     dependency: transitive
     description:

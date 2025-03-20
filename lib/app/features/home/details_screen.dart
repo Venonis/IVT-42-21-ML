@@ -106,61 +106,61 @@ class _DetailsScreenState extends State<DetailsScreen> {
       )
     );
   }
-}
-
   Future<void> _showAuthDialog(BuildContext context, bool signInOrLogIn) async {
-  final AuthService authService = getIt<AuthService>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+    final AuthService authService = getIt<AuthService>();
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
 
-  // if logged in, cancel
-  if (authService.isLoggedIn()) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Вы уже вошли в аккаунт.')),
-    );
-  }
-  else {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(signInOrLogIn ? 'Регистрация' : 'Вход'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+    // if logged in, cancel
+    if (authService.isLoggedIn()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Вы уже вошли в аккаунт.')),
+      );
+    }
+    else {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(signInOrLogIn ? 'Регистрация' : 'Вход'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: emailController,
+                  decoration: const InputDecoration(labelText: 'Email'),
+                ),
+                TextField(
+                  controller: passwordController,
+                  decoration: const InputDecoration(labelText: 'Пароль'),
+                  obscureText: true,
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Отмена'),
               ),
-              TextField(
-                controller: passwordController,
-                decoration: const InputDecoration(labelText: 'Пароль'),
-                obscureText: true,
+              TextButton(
+                onPressed: () async {
+                  if (signInOrLogIn){ // sign in
+                    _authBloc.add(AuthSignUp(email: emailController.text, password: passwordController.text));
+                  } else { // log in
+                    _authBloc.add(AuthLogin(email: emailController.text, password: passwordController.text));
+                  }
+                  Navigator.of(context).pop();
+                },
+                child: Text(signInOrLogIn ? 'Зарегистрироваться' : 'Войти'),
               ),
             ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Отмена'),
-            ),
-            TextButton(
-              onPressed: () async {
-                if (signInOrLogIn){ // sign in
-                  _authBloc.add(AuthSignUp(email: emailController.text, password: passwordController.text));
-                } else { // log in
-                  _authBloc.add(AuthLogin(email: emailController.text, password: passwordController.text));
-                }
-                Navigator.of(context).pop();
-              },
-              child: Text(signInOrLogIn ? 'Зарегистрироваться' : 'Войти'),
-            ),
-          ],
-        );
-      },
-    );
+          );
+        },
+      );
+    }
   }
 }
-}
+
+  

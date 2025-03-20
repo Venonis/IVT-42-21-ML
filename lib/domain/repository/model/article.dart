@@ -8,34 +8,34 @@ class Article {
     required this.uuid,
     required this.title,
     required this.description,
-    required this.snippet,
-    required this.url,
-    required this.imageUrl,
-    required this.language,
+    this.snippet,
+    this.url,
+    this.imageUrl,
+    this.language,
     required this.publishedAt,
-    required this.source,
-    required this.categories,
+    this.source,
+    this.categories,
     this.relevanceScore,
-    required this.locale,
+    this.locale,
   });
   final String uuid;
   final String title;
   final String description;
-  final String snippet;
-  final String url;
+  final String? snippet;
+  final String? url;
 
   @JsonKey(name: 'image_url')
-  final String imageUrl;
-  final String language;
+  final String? imageUrl;
+  final String? language;
 
   @JsonKey(name: 'published_at')
   final String publishedAt;
-  final String source;
-  final List<String> categories;
+  final String? source;
+  final List<String>? categories;
 
   @JsonKey(name: 'relevance_score')
   final String? relevanceScore;
-  final String locale;
+  final String? locale;
 
   factory Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
 

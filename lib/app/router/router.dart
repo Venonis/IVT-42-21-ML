@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/app/features/home/favorites_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:flutter_application_1/app/app.dart';
@@ -31,6 +32,16 @@ final GoRouter router = GoRouter(
             return NoTransitionPage<void>(
               key: state.pageKey,
               child: DetailsScreen(id:id),
+            );
+          },
+        ),
+        GoRoute(
+          path: 'article/favorites',
+          pageBuilder: (context, state) {
+            //final id = int.parse(state.pathParameters['id']!);
+            return NoTransitionPage<void>(
+              key: state.pageKey,
+              child: FavoritesScreen(),
             );
           },
         ),

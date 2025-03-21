@@ -52,14 +52,6 @@ class ArticleCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.favorite),
-                    onPressed: () {
-                      context.go('/home/favorites');
-                    },
-                    tooltip: 'Favorites',
-                  ),
-
                 ],
               ),
             ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/app/app.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_application_1/app/app.dart';
 import 'package:flutter_application_1/di/di.dart';
 import 'package:flutter_application_1/domain/domain.dart';
 import 'package:go_router/go_router.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({super.key, required this.id});
@@ -16,11 +18,17 @@ class _DetailsScreenState extends State<DetailsScreen> {
   final _homeBloc = HomeBloc(getIt<TopNewsRepository>());
   final _authBloc = AuthBloc(getIt<AuthService>());
 
+  bool isFavoriteGl = false;
+
   @override
   void initState() {
-    _homeBloc.add(const HomeLoad());
-    _authBloc.add(AuthCheckStatus());
+    _homeBloc.stream.listen((state) {
+      if (state is HomeLoadSuccess) {
+        _checkIfFavourite(widget.id);
+      }
+    });
     super.initState();
+    _homeBloc.add(const HomeLoad());
   }
 
   @override
@@ -85,6 +93,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       Text(
                         article.description,
                         //style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      30.ph,
+                      Text(
+                        article.publishedAt,
+                        textAlign: TextAlign.right,
+                        style: Theme.of(context).textTheme.bodySmall,
                       )
                     ],
                   ),
@@ -106,6 +120,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       )
     );
   }
+
   Future<void> _showAuthDialog(BuildContext context, bool signInOrLogIn) async {
     final AuthService authService = getIt<AuthService>();
     final emailController = TextEditingController();
@@ -161,6 +176,26 @@ class _DetailsScreenState extends State<DetailsScreen> {
       );
     }
   }
-}
 
-  
+  Future<void> _checkIfFavourite(int id) async {
+    final CollectionReference favorites = FirebaseFirestore.instance.collection('favorites');
+
+    try {
+      QuerySnapshot snapshot = await favorites
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('favourites')
+          .get();
+
+      bool isFavorite = snapshot.docs
+          .map((doc) => doc.data() as Map<String, dynamic>)
+          .toList()
+          .any((favorite) => favorite['id'] == id);
+
+      setState(() {
+        isFavoriteGl = isFavorite;
+      });
+    } on FirebaseException catch (e) {
+      throw e.message.toString();
+    }
+  }
+}

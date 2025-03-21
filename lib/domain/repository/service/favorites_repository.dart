@@ -1,4 +1,8 @@
-export 'favorites_service.dart';
+import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+part 'favorites_service.dart';
 
 abstract class FavoritesServiceInterface {
   Future<void> addFavorite({

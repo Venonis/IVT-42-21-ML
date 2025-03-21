@@ -3,6 +3,7 @@ import 'package:flutter_application_1/app/app.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_application_1/di/di.dart';
 import 'package:flutter_application_1/domain/domain.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -47,6 +48,13 @@ class _HomeScreenState extends State<HomeScreen> {
             title: const Text('Главная'),
             actions: [
               IconButton(
+                icon: const Icon(Icons.favorite),
+                onPressed: () {
+                  context.go('/home/favorites');
+                },
+                tooltip: 'Favorites',
+              ),
+              IconButton(
                 onPressed: () => _showAuthDialog(context, true), 
                 icon: const Icon(Icons.person_add)
                 ),
@@ -57,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               IconButton(
                 onPressed: () => _authBloc.add(AuthLogout()), 
                 icon: const Icon(Icons.logout)
-                )
+                ),
             ],
           ),
           body: BlocBuilder<HomeBloc, HomeState>(

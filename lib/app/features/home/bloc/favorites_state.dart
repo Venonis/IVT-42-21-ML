@@ -12,9 +12,13 @@ final class FavoritesInitial extends FavoritesState {}
 final class FavoritesLoadInProgress extends FavoritesState {}
 
 final class FavoritesLoadSuccess extends FavoritesState {
-  const FavoritesLoadSuccess({required this.favorites});
+  const FavoritesLoadSuccess({
+      required this.favorites,
+      this.favorite,
+    });
 
   final List<Article> favorites;
+  final Article? favorite;
 
   @override
   List<Object> get props => [favorites];

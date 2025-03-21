@@ -1,8 +1,4 @@
-import 'dart:async';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_application_1/domain/repository/repository.dart';
+part of 'favorites_repository.dart';
 
 class FavoritesService extends FavoritesServiceInterface {
   FavoritesService({required this.dio});

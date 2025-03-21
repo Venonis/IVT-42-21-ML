@@ -36,7 +36,7 @@ final GoRouter router = GoRouter(
           },
         ),
         GoRoute(
-          path: 'article/favorites',
+          path: 'favorites',
           pageBuilder: (context, state) {
             //final id = int.parse(state.pathParameters['id']!);
             return NoTransitionPage<void>(
